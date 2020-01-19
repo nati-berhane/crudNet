@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo</title>
+    <link rel="stylesheet" type="text/css" href="./semantic.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+        
+    <div id="app">
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="ui row">
+                    <div class="ui sixteen wide column">
+                        <br/>
+                        <br/>
+
+                        <h1 class="ui huge fluid Purple header">Todo App</h1>
+                        <hr class="ui divider">
+                    </div>
+                </div>
+                <div class="ui row">
+                    <div class="ui eight wide column">
+                        <div class="ui fluid card">
+                            <div class="content">
+                                <h4 class="ui purple fluid large label">Add New Todo</h4>
+                                <lable class="ui tiny header">New Todo</lable>
+                                <div class="ui fluid input">
+                                    <input type="text" placeholder="new todo" v-model="newTodo"/>
+                                </div>
+                                <br/>
+                                <button v-bind:class="btnClass" @click="addTodo">Add Todo</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui fluid eight wide column">
+                        <div class="ui fluid card">
+                            <div class="content">
+                                <div v-for="(todo, index) in todos" :key="index" class="ui fluid card">
+                                    <div class="content">
+                                        <h5 class="ui purple small header">{{todo.todo}}</h5>
+                                    </div>
+                                    <div class="extra">
+                                        <button class="ui right floated negative button" @click="deleteTodo(todo.id)">Delete</button>
+                                        <button v-if="!todo.isCompleted" @click="markTodoComplete(todo)" class="ui right floated purple button">Mark Complete</button>
+                                        <button v-if="todo.isCompleted" class="ui right floated disabled purple button">Completed</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./app.js"> </script>
+</body>
+</html>
